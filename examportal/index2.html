@@ -1,0 +1,52 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Management System</title>
+</head>
+<body>
+    <h1>Employee Management System</h1>
+    
+    <!-- Form to add a new employee -->
+    <h2>Add Employee</h2>
+    <form action="/add" method="POST">
+        <label>Name:</label><br>
+        <input type="text" name="name"><br>
+        <label>Position:</label><br>
+        <input type="text" name="position"><br>
+        <label>Office:</label><br>
+        <input type="text" name="office"><br>
+        <label>Age:</label><br>
+        <input type="text" name="age"><br>
+        <label>Salary:</label><br>
+        <input type="text" name="salary"><br><br>
+        <input type="submit" value="Add Employee">
+    </form>
+
+    <!-- Display existing employees -->
+    <h2>Employees</h2>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Salary</th>
+            <th>Actions</th>
+        </tr>
+        {% for employee in employees %}
+        <tr>
+            <td>{{ employee['name'] }}</td>
+            <td>{{ employee['position'] }}</td>
+            <td>{{ employee['office'] }}</td>
+            <td>{{ employee['age'] }}</td>
+            <td>{{ employee['salary'] }}</td>
+            <td>
+                <a href="/delete/{{ employee['id'] }}">Delete</a> | 
+                <a href="/edit/{{ employee['id'] }}">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
